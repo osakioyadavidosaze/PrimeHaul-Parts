@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PrimeHaul Parts – Truck Parts & Rentals</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f0f0f; color: #eee; line-height: 1.5; }
+    a { text-decoration: none; color: inherit; }
+    
+    /* Header */
+    header { background: #111; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 100; }
+    .nav { max-width: 1200px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.45rem; font-weight: 800; }
+    .logo span { color: #ff6b00; }
+    .nav-links { display: flex; gap: 26px; font-size: 0.95rem; }
+    .nav-links a:hover { color: #ff6b00; }
+    .whatsapp-btn { background: #25D366; color: #000; padding: 9px 18px; border-radius: 6px; font-weight: 700; font-size: 0.9rem; }
+
+    /* Hero */
+    .hero { background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1400') center/cover; padding: 70px 20px 50px; text-align: center; }
+    .hero h1 { font-size: 2.6rem; font-weight: 800; margin-bottom: 10px; }
+    .hero h1 span { color: #ff6b00; }
+    .hero p { font-size: 1.1rem; color: #ccc; margin-bottom: 28px; }
+    .btn { display: inline-block; padding: 13px 26px; border-radius: 8px; font-weight: 700; margin: 5px; }
+    .btn-primary { background: #ff6b00; color: #000; }
+    .btn-outline { border: 2px solid #ff6b00; color: #ff6b00; }
+
+    /* Fitment Search */
+    .fitment { background: #1a1a1a; max-width: 900px; margin: 30px auto 0; padding: 22px; border-radius: 12px; border: 1px solid #333; }
+    .fitment h3 { margin-bottom: 14px; font-size: 1.1rem; }
+    .fitment-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .fitment select, .fitment button { padding: 12px 14px; border-radius: 7px; border: none; font-size: 0.95rem; }
+    .fitment select { background: #111; color: #fff; flex: 1; min-width: 140px; }
+    .fitment button { background: #ff6b00; color: #000; font-weight: 700; cursor: pointer; }
+
+    /* Sections */
+    .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
+    .section-title { font-size: 1.5rem; margin-bottom: 22px; display: flex; justify-content: space-between; align-items: center; }
+    .section-title a { font-size: 0.9rem; color: #ff6b00; }
+
+    /* Categories */
+    .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; }
+    .cat-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 10px; padding: 18px 10px; text-align: center; }
+    .cat-card:hover { border-color: #ff6b00; }
+    .cat-card .icon { font-size: 1.7rem; margin-bottom: 6px; }
+
+    /* Products */
+    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
+    .product-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden; position: relative; }
+    .product-card:hover { border-color: #ff6b00; }
+    .stock-badge { position: absolute; top: 10px; left: 10px; background: #166534; color: #4ade80; font-size: 0.75rem; padding: 3px 9px; border-radius: 20px; font-weight: 600; }
+    .product-img { height: 150px; background: #222; display: flex; align-items: center; justify-content: center; }
+    .product-img img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+    .product-info { padding: 14px; }
+    .product-info h3 { font-size: 0.98rem; margin-bottom: 3px; }
+    .part-num { font-size: 0.78rem; color: #888; margin-bottom: 8px; }
+    .price { font-size: 1.15rem; font-weight: 700; color: #ff6b00; margin-bottom: 12px; }
+    .card-actions { display: flex; gap: 8px; }
+    .add-btn { flex: 1; padding: 9px; background: #ff6b00; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; color: #000; font-size: 0.85rem; }
+    .wa-btn { padding: 9px 12px; background: #25D366; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; color: #000; font-size: 0.85rem; }
+
+    /* Rentals */
+    .rentals { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .rental-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden; }
+    .rental-img { height: 150px; background: #222; display: flex; align-items: center; justify-content: center; }
+    .rental-img img { width: 100%; height: 100%; object-fit: cover; }
+    .rental-info { padding: 16px; }
+    .avail { display: inline-block; background: #166534; color: #4ade80; font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+    .rental-info h3 { margin-bottom: 4px; }
+    .specs { font-size: 0.85rem; color: #aaa; margin-bottom: 8px; }
+    .price { font-size: 1.1rem; font-weight: 700; color: #ff6b00; margin-bottom: 12px; }
+
+    /* Payment */
+    .payment-box { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 26px; }
+    .btc-box { background: #111; border: 1px dashed #ff6b00; border-radius: 8px; padding: 14px; margin: 12px 0; word-break: break-all; font-family: monospace; font-size: 0.92rem; }
+    .copy-btn { padding: 8px 16px; background: #ff6b00; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; color: #000; }
+
+    /* Footer */
+    footer { background: #111; border-top: 1px solid #222; padding: 40px 20px; margin-top: 50px; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+    .footer-grid h4 { margin-bottom: 10px; color: #ff6b00; }
+    .footer-grid p, .footer-grid a { font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 5px; }
+    .copyright { text-align: center; margin-top: 25px; font-size: 0.85rem; color: #666; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 1.9rem; }
+      .products { grid-template-columns: 1fr 1fr; }
+      .fitment-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav">
+      <div class="logo">Prime<span>Haul</span> Parts</div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#parts">Shop Parts</a>
+        <a href="#rentals">Rentals</a>
+        <a href="#payment">Payment</a>
+      </div>
+      <a href="https://wa.me/2348114581083" class="whatsapp-btn" target="_blank">WhatsApp Us</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Heavy-Duty <span>Truck Parts</span> & Rentals</h1>
+    <p>Quality parts. Reliable trucks. Fast US shipping.</p>
+    <a href="#parts" class="btn btn-primary">Shop Parts</a>
+    <a href="#rentals" class="btn btn-outline">Rent a Truck</a>
+
+    <!-- Year / Make / Model Search -->
+    <div class="fitment">
+      <h3>Find the right part for your truck</h3>
+      <div class="fitment-row">
+        <select id="year">
+          <option value="">Select Year</option>
+          <option>2024</option><option>2023</option><option>2022</option><option>2021</option>
+          <option>2020</option><option>2019</option><option>2018</option><option>2017</option>
+          <option>2016</option><option>2015</option><option>2014</option><option>2013</option>
+        </select>
+        <select id="make">
+          <option value="">Select Make</option>
+          <option>Freightliner</option>
+          <option>Kenworth</option>
+          <option>Peterbilt</option>
+          <option>Volvo</option>
+          <option>International</option>
+          <option>Isuzu</option>
+        </select>
+        <select id="model">
+          <option value="">Select Model</option>
+          <option>Cascadia</option>
+          <option>T680</option>
+          <option>T880</option>
+          <option>579</option>
+          <option>M2</option>
+          <option>389</option>
+        </select>
+        <button onclick="searchFitment()">Search Parts</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <div class="container">
+    <div class="section-title">
+      <h2>Shop by Category</h2>
+    </div>
+    <div class="categories">
+      <div class="cat-card"><div class="icon">🔧</div><h3>Engines</h3></div>
+      <div class="cat-card"><div class="icon">⚙️</div><h3>Transmissions</h3></div>
+      <div class="cat-card"><div class="icon">🛞</div><h3>Brakes</h3></div>
+      <div class="cat-card"><div class="icon">🛢️</div><h3>Filters</h3></div>
+      <div class="cat-card"><div class="icon">📉</div><h3>Suspension</h3></div>
+      <div class="cat-card"><div class="icon">⚡</div><h3>Electrical</h3></div>
+    </div>
+  </div>
+
+  <!-- Popular Parts -->
+  <div class="container" id="parts">
+    <div class="section-title">
+      <h2>Popular Parts</h2>
+      <a href="#">View All →</a>
+    </div>
+    <div class="products">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <div class="stock-badge">In Stock</div>
+        <div class="product-img"><img src="P6.jpg" alt="Truck engine components" loading="lazy" decoding="async"></div>
+        <div class="product-info">
+          <h3>Engine Air Filter</h3>
+          <div class="part-num">P621725 • Kenworth / Peterbilt</div>
+          <div class="price">$55</div>
+          <div class="card-actions">
+            <button class="add-btn">Add to Cart</button>
+            <a href="https://wa.me/2348114581083?text=I'm interested in Engine Air Filter (P621725)" class="wa-btn" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="stock-badge">In Stock</div>
+        <div class="product-img"><img src="AIR.jpeg" alt="Automotive air filter and engine components" loading="lazy" decoding="async"></div>
+        <div class="product-info">
+          <h3>Cascadia Air Filter</h3>
+          <div class="part-num">03-42776-010 • Freightliner</div>
+          <div class="price">$52</div>
+          <div class="card-actions">
+            <button class="add-btn">Add to Cart</button>
+            <a href="https://wa.me/2348114581083?text=I'm interested in Cascadia Air Filter" class="wa-btn" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="stock-badge">In Stock</div>
+        <div class="product-img"><img src="LED.jpg" alt="Vehicle with visible headlights" loading="lazy" decoding="async"></div>
+        <div class="product-info">
+          <h3>LED Headlight Assembly</h3>
+          <div class="part-num">A66-01405-002 • Cascadia</div>
+          <div class="price">$289</div>
+          <div class="card-actions">
+            <button class="add-btn">Add to Cart</button>
+            <a href="https://wa.me/2348114581083?text=I'm interested in LED Headlight Assembly" class="wa-btn" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <div class="stock-badge">In Stock</div>
+        <div class="product-img"><img src="CL.jpeg" alt="Engine drivetrain components" loading="lazy" decoding="async"></div>
+        <div class="product-info">
+          <h3>15.5" Clutch Assembly</h3>
+          <div class="part-num">208925-82 • Eaton Fuller</div>
+          <div class="price">$1,050</div>
+          <div class="card-actions">
+            <button class="add-btn">Add to Cart</button>
+            <a href="https://wa.me/2348114581083?text=I'm interested in 15.5 Clutch Assembly" class="wa-btn" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card">
+        <div class="stock-badge">In Stock</div>
+        <div class="product-img"><img src="IN.jpeg" alt="Automobile wheel and braking system" loading="lazy" decoding="async"></div>
+        <div class="product-info">
+          <h3>Air Brake Chamber</h3>
+          <div class="part-num">NT3030STD-HD • Universal</div>
+          <div class="price">$65</div>
+          <div class="card-actions">
+            <button class="add-btn">Add to Cart</button>
+            <a href="https://wa.me/2348114581083?text=I'm interested in Air Brake Chamber" class="wa-btn" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card">
+        <div class="stock-badge">In Stock</div>
+        <div class="product-img"><img src="NI.jpeg" alt="Heavy-duty truck suspension" loading="lazy" decoding="async"></div>
+        <div class="product-info">
+          <h3>Air Spring / Air Bag</h3>
+          <div class="part-num">W01-358-9039 • Kenworth</div>
+          <div class="price">$175</div>
+          <div class="card-actions">
+            <button class="add-btn">Add to Cart</button>
+            <a href="https://wa.me/2348114581083?text=I'm interested in Air Spring" class="wa-btn" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card">
+        <div class="stock-badge">In Stock</div>
+        <div class="product-img"><img src="PIN.jpeg" alt="Mechanical steering and engine components" loading="lazy" decoding="async"></div>
+        <div class="product-info">
+          <h3>Steering King Pin Kit</h3>
+          <div class="part-num">K145E • Freightliner</div>
+          <div class="price">$245</div>
+          <div class="card-actions">
+            <button class="add-btn">Add to Cart</button>
+            <a href="https://wa.me/2348114581083?text=I'm interested in King Pin Kit" class="wa-btn" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card">
+        <div class="stock-badge">In Stock</div>
+        <div class="product-img"><img src="O4.jpeg" alt="Truck engine sensor components" loading="lazy" decoding="async"></div>
+        <div class="product-info">
+          <h3>DEF Level Sensor</h3>
+          <div class="part-num">04-31835-000 • Cascadia</div>
+          <div class="price">$185</div>
+          <div class="card-actions">
+            <button class="add-btn">Add to Cart</button>
+            <a href="https://wa.me/2348114581083?text=I'm interested in DEF Level Sensor" class="wa-btn" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Truck Rentals -->
+  <div class="container" id="rentals">
+    <div class="section-title">
+      <h2>Truck Rentals</h2>
+    </div>
+    <div class="rentals">
+
+      <div class="rental-card">
+        <div class="rental-img"><img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Heavy-duty truck available for rental" loading="lazy" decoding="async"></div>
+        <div class="rental-info">
+          <span class="avail">Available</span>
+          <h3>Box Truck (16–26 ft)</h3>
+          <div class="specs">Local delivery & moving</div>
+          <div class="price">From $65 / day</div>
+          <a href="https://wa.me/2348114581083?text=I want to rent a Box Truck" class="add-btn" style="display:block;text-align:center;" target="_blank">Check Availability</a>
+        </div>
+      </div>
+
+      <div class="rental-card">
+        <div class="rental-img"><img src="https://image.made-in-china.com/2f0j00maPbEQuWqjzD/New-Sinotruk-HOWO-4X2-15-Tons-Excavators-Engineering-Transport-Flatbed-Truck-Price.jpg" alt="Flatbed truck on the road" loading="lazy" decoding="async"></div>
+        <div class="rental-info">
+          <span class="avail">Available</span>
+          <h3>Flatbed Truck</h3>
+          <div class="specs">Construction & materials</div>
+          <div class="price">From $149 / day</div>
+          <a href="https://wa.me/2348114581083?text=I want to rent a Flatbed Truck" class="add-btn" style="display:block;text-align:center;" target="_blank">Check Availability</a>
+        </div>
+      </div>
+
+      <div class="rental-card">
+        <div class="rental-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU3YIkE1WAEWFdKZLlASpEP2mTbG3MVPf2B6KCwaZLIQ&s=10" alt="Semi truck available for day rental" loading="lazy" decoding="async"></div>
+        <div class="rental-info">
+          <span class="avail">Available</span>
+          <h3>Semi – Day Cab</h3>
+          <div class="specs">Regional haul</div>
+          <div class="price">From $199 / day</div>
+          <a href="https://wa.me/2348114581083?text=I want to rent a Day Cab Semi" class="add-btn" style="display:block;text-align:center;" target="_blank">Check Availability</a>
+        </div>
+      </div>
+
+      <div class="rental-card">
+        <div class="rental-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2N2dA53uU5K9h5DLTJuRtVcdxGAQvwFnHo8hijhPovxEC023ivIw42fM&s=10" alt="Sleeper truck for long-haul rental" loading="lazy" decoding="async"></div>
+        <div class="rental-info">
+          <span class="avail">Available</span>
+          <h3>Semi – Sleeper</h3>
+          <div class="specs">Long-haul OTR</div>
+          <div class="price">From $249 / day</div>
+          <a href="https://wa.me/2348114581083?text=I want to rent a Sleeper Semi" class="add-btn" style="display:block;text-align:center;" target="_blank">Check Availability</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Payment -->
+  <div class="container" id="payment">
+    <div class="payment-box">
+      <h2>Payment Options</h2>
+      <p style="margin-bottom: 12px;">We accept:</p>
+      <ul style="margin-left: 20px; color: #ccc; margin-bottom: 18px;">
+        <li>PayPal (Recommended)</li>
+        <li>Bank / Wire Transfer</li>
+        <li>Bitcoin (BTC)</li>
+      </ul>
+
+      <p><strong>Bitcoin Address:</strong></p>
+      <div class="btc-box" id="btcAddress">bc1q7h073pkdf95hz8hzcdk6h5h6tccqqul2vf8t9a</div>
+      <button class="copy-btn" onclick="copyBTC()">Copy BTC Address</button>
+      <p style="margin-top: 12px; font-size: 0.85rem; color: #888;">After sending payment, please message us the transaction ID on WhatsApp.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>PrimeHaul Parts</h4>
+        <p>Quality truck parts & reliable rentals across the USA.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#parts">Shop Parts</a>
+        <a href="#rentals">Truck Rentals</a>
+        <a href="#payment">Payment</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>WhatsApp: +234 811 458 1083</p>
+        <p>Email: sales@primehaulparts.com</p>
+      </div>
+    </div>
+    <div class="copyright">© 2026 PrimeHaul Parts. All rights reserved.</div>
+  </footer>
+
+  <script>
+    function copyBTC() {
+      const text = document.getElementById('btcAddress').innerText;
+      navigator.clipboard.writeText(text).then(() => alert('Bitcoin address copied!'));
+    }
+
+    function searchFitment() {
+      const year = document.getElementById('year').value;
+      const make = document.getElementById('make').value;
+      const model = document.getElementById('model').value;
+      
+      if(!year || !make || !model) {
+        alert('Please select Year, Make and Model');
+        return;
+      }
+      
+      // This opens WhatsApp with the selected truck details
+      const message = `Hi, I need parts for a ${year} ${make} ${model}. Please help me.`;
+      window.open(`https://wa.me/2348114581083?text=${encodeURIComponent(message)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
