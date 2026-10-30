@@ -58,8 +58,21 @@
     .part-num { font-size: 0.78rem; color: #888; margin-bottom: 8px; }
     .price { font-size: 1.15rem; font-weight: 700; color: #ff6b00; margin-bottom: 12px; }
     .card-actions { display: flex; gap: 8px; }
-    .add-btn { flex: 1; padding: 9px; background: #ff6b00; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; color: #000; font-size: 0.85rem; }
     .wa-btn { padding: 9px 12px; background: #25D366; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; color: #000; font-size: 0.85rem; }
+    .card-actions .wa-btn { flex: 1; text-align: center; }
+
+    /* F-150 parts and accessories */
+    .upgrade-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+    .upgrade-card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; }
+    .upgrade-card:hover { border-color: #ff6b00; }
+    .upgrade-card h3 { font-size: 1rem; margin-bottom: 6px; }
+    .upgrade-detail { color: #aaa; font-size: 0.88rem; margin-bottom: 12px; }
+    .upgrade-price { color: #ff6b00; font-size: 1.1rem; font-weight: 700; margin-top: auto; margin-bottom: 12px; }
+    .retailer-link { display: inline-block; align-self: flex-start; color: #ff6b00; font-size: 0.9rem; font-weight: 700; }
+    .retailer-link:hover { text-decoration: underline; }
+
+    /* Rental actions */
+    .rental-btn { display: block; padding: 9px; background: #ff6b00; border-radius: 6px; font-weight: 700; color: #000; font-size: 0.85rem; text-align: center; }
 
     /* Rentals */
     .rentals { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
@@ -101,6 +114,7 @@
       <div class="nav-links">
         <a href="#">Home</a>
         <a href="#parts">Shop Parts</a>
+        <a href="#f150-upgrades">F-150 Parts</a>
         <a href="#rentals">Rentals</a>
         <a href="#payment">Payment</a>
       </div>
@@ -180,7 +194,6 @@
           <div class="part-num">P621725 • Kenworth / Peterbilt</div>
           <div class="price">$55</div>
           <div class="card-actions">
-            <button class="add-btn">Add to Cart</button>
             <a href="https://wa.me/2348114581083?text=I'm interested in Engine Air Filter (P621725)" class="wa-btn" target="_blank">WhatsApp</a>
           </div>
         </div>
@@ -195,7 +208,6 @@
           <div class="part-num">03-42776-010 • Freightliner</div>
           <div class="price">$52</div>
           <div class="card-actions">
-            <button class="add-btn">Add to Cart</button>
             <a href="https://wa.me/2348114581083?text=I'm interested in Cascadia Air Filter" class="wa-btn" target="_blank">WhatsApp</a>
           </div>
         </div>
@@ -210,7 +222,6 @@
           <div class="part-num">A66-01405-002 • Cascadia</div>
           <div class="price">$289</div>
           <div class="card-actions">
-            <button class="add-btn">Add to Cart</button>
             <a href="https://wa.me/2348114581083?text=I'm interested in LED Headlight Assembly" class="wa-btn" target="_blank">WhatsApp</a>
           </div>
         </div>
@@ -225,7 +236,6 @@
           <div class="part-num">208925-82 • Eaton Fuller</div>
           <div class="price">$1,050</div>
           <div class="card-actions">
-            <button class="add-btn">Add to Cart</button>
             <a href="https://wa.me/2348114581083?text=I'm interested in 15.5 Clutch Assembly" class="wa-btn" target="_blank">WhatsApp</a>
           </div>
         </div>
@@ -240,7 +250,6 @@
           <div class="part-num">NT3030STD-HD • Universal</div>
           <div class="price">$65</div>
           <div class="card-actions">
-            <button class="add-btn">Add to Cart</button>
             <a href="https://wa.me/2348114581083?text=I'm interested in Air Brake Chamber" class="wa-btn" target="_blank">WhatsApp</a>
           </div>
         </div>
@@ -255,7 +264,6 @@
           <div class="part-num">W01-358-9039 • Kenworth</div>
           <div class="price">$175</div>
           <div class="card-actions">
-            <button class="add-btn">Add to Cart</button>
             <a href="https://wa.me/2348114581083?text=I'm interested in Air Spring" class="wa-btn" target="_blank">WhatsApp</a>
           </div>
         </div>
@@ -270,7 +278,6 @@
           <div class="part-num">K145E • Freightliner</div>
           <div class="price">$245</div>
           <div class="card-actions">
-            <button class="add-btn">Add to Cart</button>
             <a href="https://wa.me/2348114581083?text=I'm interested in King Pin Kit" class="wa-btn" target="_blank">WhatsApp</a>
           </div>
         </div>
@@ -285,12 +292,56 @@
           <div class="part-num">04-31835-000 • Cascadia</div>
           <div class="price">$185</div>
           <div class="card-actions">
-            <button class="add-btn">Add to Cart</button>
             <a href="https://wa.me/2348114581083?text=I'm interested in DEF Level Sensor" class="wa-btn" target="_blank">WhatsApp</a>
           </div>
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- F-150 Parts & Accessories -->
+  <div class="container" id="f150-upgrades">
+    <div class="section-title">
+      <h2>F-150 Parts &amp; Accessories</h2>
+    </div>
+    <div class="upgrade-grid">
+      <article class="upgrade-card">
+        <h3>Duralast Ceramic Brake Pads (Front/Rear)</h3>
+        <p class="upgrade-detail">Ford F-150 configuration · Price per axle set</p>
+        <p class="upgrade-price">$55.00–$88.00 per axle set</p>
+        <a class="retailer-link" href="https://www.autozone.com/" target="_blank" rel="noopener noreferrer">Shop at AutoZone</a>
+      </article>
+      <article class="upgrade-card">
+        <h3>PowerStop Performance Pads &amp; Rotors Kit</h3>
+        <p class="upgrade-detail">Complete performance brake kit</p>
+        <p class="upgrade-price">$628.99</p>
+        <a class="retailer-link" href="https://www.autozone.com/brakes-and-traction-control/performance-brake-pads-rotors-kit/ford/f150" target="_blank" rel="noopener noreferrer">Shop at AutoZone</a>
+      </article>
+      <article class="upgrade-card">
+        <h3>BFGoodrich All-Terrain T/A KO3</h3>
+        <p class="upgrade-detail">All-terrain tire · Price per tire</p>
+        <p class="upgrade-price">$314.99–$494.99 per tire</p>
+        <a class="retailer-link" href="https://www.tirerack.com/" target="_blank" rel="noopener noreferrer">Shop at Tire Rack</a>
+      </article>
+      <article class="upgrade-card">
+        <h3>RealTruck BAKFlip MX4 (Gen 3)</h3>
+        <p class="upgrade-detail">Hard folding tonneau cover</p>
+        <p class="upgrade-price">$1,149.00–$1,199.99</p>
+        <a class="retailer-link" href="https://realtruck.com/p/bakflip-mx4-tonneau-cover/" target="_blank" rel="noopener noreferrer">Shop at RealTruck</a>
+      </article>
+      <article class="upgrade-card">
+        <h3>K&amp;N NextGen Series 50/77 Performance Intake</h3>
+        <p class="upgrade-detail">Cold air intake system kit</p>
+        <p class="upgrade-price">$450.00–$524.99</p>
+        <a class="retailer-link" href="https://www.americantrucks.com/" target="_blank" rel="noopener noreferrer">Shop at AmericanTrucks</a>
+      </article>
+      <article class="upgrade-card">
+        <h3>RealTruck SwingCase Toolbox</h3>
+        <p class="upgrade-detail">Truck bed storage</p>
+        <p class="upgrade-price">Starting at $239.99</p>
+        <a class="retailer-link" href="https://realtruck.com/c/exterior-accessories/tonneau-covers/f/sale/?srsltid=AYCX9vLWzHyvJIBxCFgQC-xTAu77h-76BzevEkO-8-UeeU4nB6VgiAXO" target="_blank" rel="noopener noreferrer">Shop at RealTruck</a>
+      </article>
     </div>
   </div>
 
@@ -308,7 +359,7 @@
           <h3>Box Truck (16–26 ft)</h3>
           <div class="specs">Local delivery & moving</div>
           <div class="price">From $65 / day</div>
-          <a href="https://wa.me/2348114581083?text=I want to rent a Box Truck" class="add-btn" style="display:block;text-align:center;" target="_blank">Check Availability</a>
+          <a href="https://wa.me/2348114581083?text=I want to rent a Box Truck" class="rental-btn" target="_blank">Check Availability</a>
         </div>
       </div>
 
@@ -319,7 +370,7 @@
           <h3>Flatbed Truck</h3>
           <div class="specs">Construction & materials</div>
           <div class="price">From $149 / day</div>
-          <a href="https://wa.me/2348114581083?text=I want to rent a Flatbed Truck" class="add-btn" style="display:block;text-align:center;" target="_blank">Check Availability</a>
+          <a href="https://wa.me/2348114581083?text=I want to rent a Flatbed Truck" class="rental-btn" target="_blank">Check Availability</a>
         </div>
       </div>
 
@@ -330,7 +381,7 @@
           <h3>Semi – Day Cab</h3>
           <div class="specs">Regional haul</div>
           <div class="price">From $199 / day</div>
-          <a href="https://wa.me/2348114581083?text=I want to rent a Day Cab Semi" class="add-btn" style="display:block;text-align:center;" target="_blank">Check Availability</a>
+          <a href="https://wa.me/2348114581083?text=I want to rent a Day Cab Semi" class="rental-btn" target="_blank">Check Availability</a>
         </div>
       </div>
 
@@ -341,7 +392,7 @@
           <h3>Semi – Sleeper</h3>
           <div class="specs">Long-haul OTR</div>
           <div class="price">From $249 / day</div>
-          <a href="https://wa.me/2348114581083?text=I want to rent a Sleeper Semi" class="add-btn" style="display:block;text-align:center;" target="_blank">Check Availability</a>
+          <a href="https://wa.me/2348114581083?text=I want to rent a Sleeper Semi" class="rental-btn" target="_blank">Check Availability</a>
         </div>
       </div>
 
